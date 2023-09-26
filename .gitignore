@@ -1,0 +1,6 @@
+venv39
+.idea
+secret_stuff.py
+toads.db
+toads.sqbpro
+toads.db-journal
