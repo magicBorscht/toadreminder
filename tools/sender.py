@@ -37,10 +37,10 @@ class TelegramSenderBuilder:
                         )
                     )
 
-    async def send(self: TelegramSenderBuilder, data: Dict) -> None:
+    async def send(self: TelegramSenderBuilder, message: str) -> None:
         await asyncio.gather(
             *[
-                self.send_message(chat_id, "MEEEESSSAGE HEEEEREEEEEEEEEEEE")
+                self.send_message(chat_id, message)
                 for chat_id in self._recipients
             ]
         )

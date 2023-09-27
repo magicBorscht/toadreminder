@@ -1,4 +1,4 @@
-venv39
+venv
 .idea
 secret_stuff.py
 toads.db
