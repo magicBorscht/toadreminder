@@ -1,4 +1,7 @@
+import datetime
 import logging
+
+logger = logging.getLogger("app")
 
 
 async def zhaba() -> None:

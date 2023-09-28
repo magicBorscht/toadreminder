@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-from pydantic import BaseModel
-
 from typing import Type
 
 from aiosqlite import Row
+from pydantic import BaseModel
 
 
 class GifterDataSchema(BaseModel):

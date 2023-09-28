@@ -1,8 +1,10 @@
-from fastapi import APIRouter
-import aiosqlite
-from schemas.gifters import GifterDataSchema, GifterSchema
 import logging
 from typing import List
+
+import aiosqlite
+from fastapi import APIRouter
+
+from schemas.gifters import GifterDataSchema, GifterSchema
 
 router = APIRouter()
 

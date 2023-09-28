@@ -1,4 +1,5 @@
 import asyncio
+import logging
 import traceback
 from typing import Callable
 
@@ -8,11 +9,9 @@ from fastapi import FastAPI, Request
 from fastapi.responses import ORJSONResponse, Response
 from fastapi.security import HTTPBearer
 
-import logging
-
-import api.toads.router
 import api.gifters.router
 import api.system.router
+import api.toads.router
 from tasks.birthday_reminder import zhaba
 
 security = HTTPBearer()

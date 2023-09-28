@@ -1,24 +1,21 @@
 from __future__ import annotations
 
 import asyncio
-import os
-import re
-from typing import Dict, Literal
-from secret_stuff import settings
 import logging
+from typing import List
 
 import aiohttp
 
+from secret_stuff import settings
 
 logger = logging.getLogger("app")
 
 
 class TelegramSenderBuilder:
     def __init__(
-            self: TelegramSenderBuilder,
+            self: TelegramSenderBuilder
     ) -> None:
         self._credentials = {"BOT_TOKEN": settings.tg_bot}
-        self._recipients = None
 
     async def send_message(self: TelegramSenderBuilder, recipient: str, text: str) -> None:
         url = f"https://api.telegram.org/bot{self._credentials['BOT_TOKEN']}/sendMessage"
@@ -37,10 +34,5 @@ class TelegramSenderBuilder:
                         )
                     )
 
-    async def send(self: TelegramSenderBuilder, message: str) -> None:
-        await asyncio.gather(
-            *[
-                self.send_message(chat_id, message)
-                for chat_id in self._recipients
-            ]
-        )
+    async def send(self: TelegramSenderBuilder, recipient: str, message: str) -> None:
+        await self.send_message(recipient, message)
