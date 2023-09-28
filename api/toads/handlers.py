@@ -15,10 +15,7 @@ logger = logging.getLogger("app")
 async def get_toads() -> List[ToadSchema]:
     async with aiosqlite.connect("./toads.db") as db:
         cursor = await db.execute("SELECT * FROM toads")
-        resp = []
-        for toad in await cursor.fetchall():
-            schemated_toad = ToadSchema.from_list(toad)
-            resp.append(schemated_toad)
+        resp = [ToadSchema.from_list(toad) for toad in await cursor.fetchall()]
         return resp
 
 
@@ -27,9 +24,10 @@ async def create_toad(data: ToadDataSchema):
     async with aiosqlite.connect("./toads.db") as db:
         await db.execute(
             f"""
-                INSERT INTO toads (name,name_gen,tg_handler,birthday)
+                INSERT INTO toads (name,name_gen,tg_handler,birthday, name_dat)
                 VALUES ('{data.name}', '{data.name_gen}', 
-                '{data.tg_handler}', '{data.birthday}')
+                '{data.tg_handler}', '{data.birthday}',
+                '{data.name_dat}')
             """
         )
         await db.commit()
