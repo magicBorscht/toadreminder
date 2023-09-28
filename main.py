@@ -12,6 +12,7 @@ import logging
 
 import api.toads.router
 import api.gifters.router
+import api.system.router
 from tasks.birthday_reminder import zhaba
 
 security = HTTPBearer()
@@ -24,11 +25,13 @@ def create_app() -> FastAPI:
     tags = [
         {"name": "toad", "description": "Жабовладельческий строй"},
         {"name": "gift", "description": "Управление дарениями"},
+        {"name": "system", "description": "Это мне нужно чтобы срать"},
     ]
     app = FastAPI(openapi_tags=tags, default_response_class=ORJSONResponse)
 
     app.include_router(api.toads.router.router, tags=["toad"])
     app.include_router(api.gifters.router.router, tags=["gift"])
+    app.include_router(api.system.router.router, tags=["system"])
 
     @app.on_event("shutdown")
     async def _() -> None:
